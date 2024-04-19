@@ -1,3 +1,5 @@
 API POSIBLE PARA USAR https://open-meteo.com/
 
 https://www.el-tiempo.net/api  
+
+https://api.tutiempo.net/list/

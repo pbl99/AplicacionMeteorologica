@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="816.0" style="-fx-background-image: url(&quot;background.jpg&quot;);;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.palmen.appmeteo.aplicacionmeteorologica.MainController">
    <children>
@@ -51,9 +52,20 @@
                         <Insets left="35.0" top="10.0" />
                      </VBox.margin>
                   </ImageView>
-                  <Label fx:id="lblTempDiaPrimero" text="26º">
+                  <Label fx:id="lblTempMaxDiaPrimero" prefHeight="18.0" prefWidth="51.0" text="24º MAX">
                      <VBox.margin>
-                        <Insets left="50.0" top="8.0" />
+                        <Insets left="38.0" top="8.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblTempMinDiaPrimero" text="7º MIN">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="38.0" />
                      </VBox.margin>
                   </Label>
                </children>
@@ -73,10 +85,21 @@
                         <Insets left="38.0" top="10.0" />
                      </VBox.margin>
                   </ImageView>
-                  <Label fx:id="lblTempDiaSegundo" text="24º">
+                  <Label fx:id="lblTempMaxDiaSegundo" text="24º MAX">
                      <VBox.margin>
-                        <Insets left="52.0" top="8.0" />
+                        <Insets left="43.0" top="8.0" />
                      </VBox.margin>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblTempMinDiaSegundo" text="10º MIN">
+                     <VBox.margin>
+                        <Insets left="43.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
                   </Label>
                </children>
                <HBox.margin>
@@ -98,9 +121,20 @@
                         <Image url="@../../../../imgs/solNubesAgua.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="lblTempDiaTercero" text="19º">
+                  <Label fx:id="lblTempMaxDiaTercero" text="19º MAX">
                      <VBox.margin>
-                        <Insets left="59.0" top="8.0" />
+                        <Insets left="50.0" top="8.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblTempMinDiaTercero" text="9º MIN">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="50.0" />
                      </VBox.margin>
                   </Label>
                </children>
@@ -120,9 +154,20 @@
                         <Insets left="37.0" top="10.0" />
                      </VBox.margin>
                   </ImageView>
-                  <Label fx:id="lblTempDiaCuarto" text="17º">
+                  <Label fx:id="lblTempMaxDiaCuarto" text="17º MAX">
                      <VBox.margin>
-                        <Insets left="50.0" top="8.0" />
+                        <Insets left="40.0" top="8.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblTempMinDiaCuarto" text="10º MIN">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="40.0" />
                      </VBox.margin>
                   </Label>
                </children>
@@ -142,10 +187,21 @@
                         <Image url="@../../../../imgs/lluviaFuerte.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="lblTempDiaQuinto" text="14º">
+                  <Label fx:id="lblTempMaxDiaQuinto" text="14º MAX">
                      <VBox.margin>
-                        <Insets left="52.0" top="8.0" />
+                        <Insets left="42.0" top="8.0" />
                      </VBox.margin>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblTempMinDiaQuinto" text="5º MIN">
+                     <VBox.margin>
+                        <Insets left="42.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
                   </Label>
                </children>
             </VBox>
@@ -164,10 +220,21 @@
                         <Insets left="40.0" top="10.0" />
                      </VBox.margin>
                   </ImageView>
-                  <Label fx:id="lblTempDiaSexto" text="16º">
+                  <Label fx:id="lblTempMaxDiaSexto" text="16º MAX">
                      <VBox.margin>
-                        <Insets left="52.0" top="8.0" />
+                        <Insets left="42.0" top="8.0" />
                      </VBox.margin>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblTempMinDiaSexto" text="7º MIN">
+                     <VBox.margin>
+                        <Insets left="42.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
                   </Label>
                </children>
             </VBox>
@@ -186,10 +253,21 @@
                         <Image url="@../../../../imgs/solNubesAgua.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="lblTempDiaSeptimo" text="21º">
+                  <Label fx:id="lblTempMaxDiaSeptimo" text="21º MAX">
                      <VBox.margin>
-                        <Insets left="50.0" top="8.0" />
+                        <Insets left="38.0" top="8.0" />
                      </VBox.margin>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblTempMinDiaSeptimo" text="9º MIN">
+                     <VBox.margin>
+                        <Insets left="38.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
                   </Label>
                </children>
             </VBox>
