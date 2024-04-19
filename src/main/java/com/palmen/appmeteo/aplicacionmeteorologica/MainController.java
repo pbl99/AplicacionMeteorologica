@@ -71,7 +71,6 @@ public class MainController {
     @FXML
     private Label lblTempDiaTercero;
 
-
     public void actualizarDiasSegunDiaActual() {
         // Obtener la fecha actual
         LocalDate today = LocalDate.now();
@@ -79,24 +78,41 @@ public class MainController {
         // Obtener el día de la semana actual
         DayOfWeek dayOfWeek = today.getDayOfWeek();
 
-        if (dayOfWeek == DayOfWeek.WEDNESDAY) {
-            lblDiaPrimero.setText("MIERCOLES");
-            lblDiaSegundo.setText("JUEVES");
-            lblDiaTercero.setText("VIERNES");
-            lblDiaCuarto.setText("SABADO");
-            lblDiaQuinto.setText("DOMINGO");
-            lblDiaSexto.setText("LUNES");
-            lblDiaSeptimo.setText("MARTES");
+        // Definir los nombres de los días de la semana
+        String[] diasSemana = {"DOMINGO", "LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO"};
+
+        // Encontrar la posición del día actual en el arreglo
+        int indexDiaActual = dayOfWeek.getValue();
+
+        // Actualizar los labels de los días de la semana
+        for (int i = 0; i < 7; i++) {
+            String diaActual = diasSemana[indexDiaActual];
+            switch (i) {
+                case 0:
+                    lblDiaPrimero.setText(diaActual);
+                    break;
+                case 1:
+                    lblDiaSegundo.setText(diaActual);
+                    break;
+                case 2:
+                    lblDiaTercero.setText(diaActual);
+                    break;
+                case 3:
+                    lblDiaCuarto.setText(diaActual);
+                    break;
+                case 4:
+                    lblDiaQuinto.setText(diaActual);
+                    break;
+                case 5:
+                    lblDiaSexto.setText(diaActual);
+                    break;
+                case 6:
+                    lblDiaSeptimo.setText(diaActual);
+                    break;
+            }
+            indexDiaActual = (indexDiaActual + 1) % 7; // Avanzar al siguiente día, circularmente
         }
-        if (dayOfWeek == DayOfWeek.FRIDAY) {
-            lblDiaPrimero.setText("VIERNES");
-            lblDiaSegundo.setText("SABADO");
-            lblDiaTercero.setText("DOMINGO");
-            lblDiaCuarto.setText("LUNES");
-            lblDiaQuinto.setText("MARTES");
-            lblDiaSexto.setText("MIERCOLES");
-            lblDiaSeptimo.setText("JUEVES");
-        }
+
     }
 
     @FXML
