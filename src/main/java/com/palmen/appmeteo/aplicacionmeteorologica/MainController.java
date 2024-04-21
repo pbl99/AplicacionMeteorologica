@@ -3,6 +3,7 @@ package com.palmen.appmeteo.aplicacionmeteorologica;
 import com.palmen.appmeteo.aplicacionmeteorologica.models.WeatherAPIReader;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.time.DayOfWeek;
@@ -93,6 +94,8 @@ public class MainController {
     @FXML
     private Label lblTempMinDiaTercero;
 
+    private WeatherAPIReader weatherAPIReader;
+
     public void actualizarDiasSegunDiaActual() {
         // Obtener la fecha actual
         LocalDate today = LocalDate.now();
@@ -101,11 +104,15 @@ public class MainController {
         DayOfWeek dayOfWeek = today.getDayOfWeek();
 
         // Definir los nombres de los días de la semana
-        String[] diasSemana = {"DOMINGO", "LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO"};
+        String[] diasSemana = {"LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO", "DOMINGO"};
 
         // Encontrar la posición del día actual en el arreglo
-        int indexDiaActual = dayOfWeek.getValue();
+        int indexDiaActual = dayOfWeek.getValue() - 1;
 
+        // Ajustar el índice para que sea positivo (puede ser negativo si hoy es domingo)
+        /*if (indexDiaActual < 0) {
+            indexDiaActual += 7; // Si es negativo, sumar 7 para obtener un índice válido
+        }*/
         // Actualizar los labels de los días de la semana
         for (int i = 0; i < 7; i++) {
             String diaActual = diasSemana[indexDiaActual];
@@ -139,12 +146,11 @@ public class MainController {
 
     public void actualizarTemperaturasSegunDia() {
         try {
-            WeatherAPIReader weatherAPIReader = new WeatherAPIReader("https://api.tutiempo.net/xml/?lan=es&apid=axT4Xqa4qqaMMMV&lid=3081");
+            weatherAPIReader = new WeatherAPIReader("https://api.tutiempo.net/xml/?lan=es&apid=axT4Xqa4qqaMMMV&lid=3081");
             // Obtener el día actual
             LocalDate today = LocalDate.now();
             DayOfWeek dayOfWeek = today.getDayOfWeek();
-            String[] diasSemana = {"DOMINGO", "LUNES", "MARTES", "MIÉRCOLES", "JUEVES", "VIERNES", "SÁBADO"};
-            int indexDiaActual = dayOfWeek.getValue() - 1; // Indices del array comienzan desde 0
+            // int indexDiaActual = dayOfWeek.getValue() - 1; // Indices del array comienzan desde 0
 
             // Iterar sobre los próximos 7 días para actualizar las temperaturas
             for (int i = 0; i < 7; i++) {
@@ -183,7 +189,49 @@ public class MainController {
                 }
 
                 // Avanzar al siguiente día circularmente
-               // indexDiaActual = (indexDiaActual + 1) % 7;
+                // indexDiaActual = (indexDiaActual + 1) % 7;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void actualizarImgTiempoSegunDia() {
+        try {
+            weatherAPIReader = new WeatherAPIReader("https://api.tutiempo.net/xml/?lan=es&apid=axT4Xqa4qqaMMMV&lid=3081");
+            // Obtener el día actual
+            LocalDate today = LocalDate.now();
+            DayOfWeek dayOfWeek = today.getDayOfWeek();
+
+            for (int i = 0; i < 7; i++) {
+                String dia = "day" + (i + 1); // Obtener el día correspondiente
+                String estadoDia = weatherAPIReader.obtenerEstadoClima(dia);
+                String rutaImagen = weatherAPIReader.obtenerImagenClima(estadoDia);
+
+                // Asignar la imagen al JLabel correspondiente según el día de la semana
+                switch (i) {
+                    case 0:
+                        imgDiaPrimero.setImage(new Image(rutaImagen));
+                        break;
+                    case 1:
+                        imgDiaSegundo.setImage(new Image(rutaImagen));
+                        break;
+                    case 2:
+                        imgDiaTercero.setImage(new Image(rutaImagen));
+                        break;
+                    case 3:
+                        imgDiaCuarto.setImage(new Image(rutaImagen));
+                        break;
+                    case 4:
+                        imgDiaQuinto.setImage(new Image(rutaImagen));
+                        break;
+                    case 5:
+                        imgDiaSexto.setImage(new Image(rutaImagen));
+                        break;
+                    case 6:
+                        imgDiaSeptimo.setImage(new Image(rutaImagen));
+                        break;
+                }
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -194,6 +242,7 @@ public class MainController {
     private void initialize() {
         actualizarDiasSegunDiaActual();
         actualizarTemperaturasSegunDia();
+        actualizarImgTiempoSegunDia();
     }
 
 }

@@ -2,13 +2,12 @@ package com.palmen.appmeteo.aplicacionmeteorologica.models;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 
 
 public class WeatherAPIReader {
@@ -46,25 +45,17 @@ public class WeatherAPIReader {
         return dayElement.getElementsByTagName("text").item(0).getTextContent();
     }
 
-    public static void main(String[] args) {
-        try {
-            String apiUrl = "https://api.tutiempo.net/xml/?lan=es&apid=axT4Xqa4qqaMMMV&lid=3081";
-            WeatherAPIReader xmlHandler = new WeatherAPIReader(apiUrl);
+    public String obtenerImagenClima(String estadoClima) {
+        // HashMap para mapear los estados del clima a las rutas de las imágenes correspondientes
+        HashMap<String, String> imagenesClima = new HashMap<>();
+        imagenesClima.put("Parcialmente nuboso", "https://v5i.tutiempo.net/wi/01/30/4.png");
+        imagenesClima.put("Cubierto", "https://v5i.tutiempo.net/wi/01/30/7.png");
+        imagenesClima.put("Muy nuboso", "https://v5i.tutiempo.net/wi/01/30/6.png");
+        imagenesClima.put("Cubierto con lluvias", "https://v5i.tutiempo.net/wi/01/30/19.png");
+        //imagenesClima.put("Muy nuboso con lluvias", "lluviaFuerte.png");
+        imagenesClima.put("Muy nuboso con probabilidad de lluvia", "https://v5i.tutiempo.net/wi/01/30/19.png");
 
-            String dia1 = "day1";
-            String dia2 = "day2";
-
-            System.out.println("Dia 1:");
-            System.out.println("Temperatura Máxima: " + xmlHandler.obtenerTemperaturaMaxima(dia1));
-            System.out.println("Temperatura Mínima: " + xmlHandler.obtenerTemperaturaMinima(dia1));
-            System.out.println("Estado del Clima: " + xmlHandler.obtenerEstadoClima(dia1));
-
-            System.out.println("\nDia 2:");
-            System.out.println("Temperatura Máxima: " + xmlHandler.obtenerTemperaturaMaxima(dia2));
-            System.out.println("Temperatura Mínima: " + xmlHandler.obtenerTemperaturaMinima(dia2));
-            System.out.println("Estado del Clima: " + xmlHandler.obtenerEstadoClima(dia2));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        // Obtener la ruta de la imagen correspondiente al estado del clima
+        return imagenesClima.getOrDefault(estadoClima, "tormenta.png");
     }
 }
